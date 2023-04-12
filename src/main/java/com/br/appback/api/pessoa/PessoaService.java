@@ -6,7 +6,6 @@ import com.br.appback.model.entity.Endereco;
 import com.br.appback.model.entity.Pessoa;
 import jakarta.ejb.*;
 
-@Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class PessoaService extends GenericService<Pessoa> {
 

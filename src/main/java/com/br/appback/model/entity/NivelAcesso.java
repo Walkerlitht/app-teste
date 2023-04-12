@@ -10,6 +10,6 @@ public class NivelAcesso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_nivel_acesso")
+    @Column(name = "id_nivel_acesso", insertable = false, updatable = false)
     private Long id;
 }

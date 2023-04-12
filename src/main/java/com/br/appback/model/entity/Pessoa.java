@@ -10,7 +10,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pessoa")
+    @Column(name = "id_pessoa", insertable = false, updatable = false)
     private Long id;
 
     @Column(name = "nome")
@@ -23,14 +23,14 @@ public class Pessoa {
     @JoinColumn(name = "id_nivel_acesso")
     private NivelAcesso nivelAcesso;
 
-    @Column(name = "id_nivel_acesso")
+    @Column(name = "id_nivel_acesso", insertable = false, updatable = false)
     private Long idNivelAcesso;
 
     @OneToOne
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-    @Column(name = "id_endereco")
+    @Column(name = "id_endereco", insertable = false, updatable = false)
     private Long idEndereco;
 
     @PostPersist

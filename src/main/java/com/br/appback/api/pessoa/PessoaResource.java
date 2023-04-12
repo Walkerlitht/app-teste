@@ -2,8 +2,7 @@ package com.br.appback.api.pessoa;
 
 import com.br.appback.dto.PessoaDto;
 import com.br.appback.model.entity.Pessoa;
-import com.br.appback.utils.Json;
-import jakarta.ejb.Stateless;
+import com.google.gson.Gson;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -12,7 +11,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Stateless
 @Path("pessoas")
 public class PessoaResource {
 
@@ -24,7 +22,7 @@ public class PessoaResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response post(String json) {
         try {
-            PessoaDto pessoaDto = Json.fromJson(json, PessoaDto.class);
+            PessoaDto pessoaDto = new Gson().fromJson(json, PessoaDto.class);
 
             Pessoa pessoa = pessoaService.cadastrar(pessoaDto);
 

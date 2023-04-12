@@ -1,20 +1,24 @@
 package com.br.appback.utils;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.PersistenceContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.ws.rs.Produces;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class EntityManager {
 
     private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("appbanco");
 
     @Produces
-    protected static javax.persistence.EntityManager getEntityManager() {return FACTORY.createEntityManager();}
+    @RequestScoped
+    protected static jakarta.persistence.EntityManager getEntityManager() {return FACTORY.createEntityManager();}
 
-    public EntityManager() {getEntityManager();}
+    public EntityManager() {getEntityManager().getTransaction().begin();}
+
 
 }
